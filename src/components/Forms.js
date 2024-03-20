@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios'; // Import Axios
 import SimpleReactValidator from 'simple-react-validator';
 
 class Forms extends React.Component {
@@ -17,8 +18,29 @@ class Forms extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state.formData)
     if (this.validator.allValid()) {
-      console.log(this.state.formData);
+        axios.post('http://localhost:5000/api/form-submissions', this.state.formData, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+                  .then(response => {
+          console.log(response.data); // Log the response from the backend
+          // Reset the form after successful submission if needed
+          this.setState({
+            formData: {
+              username: "",
+              language: "C++",
+              stdin: "",
+              sourceCode: ""
+            }
+          });
+        })
+        .catch(error => {
+          console.error('Error submitting form:', error);
+          // Handle error, display error message, etc.
+        });
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -34,7 +56,6 @@ class Forms extends React.Component {
       }
     }));
   };
-
   render() {
     const { formData } = this.state;
     return (
