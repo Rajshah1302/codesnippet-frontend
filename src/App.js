@@ -1,12 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Forms from './components/Forms';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Forms from "./components/Forms";
+import Navbar from "./components/Navbar";
+import Display from "./components/Display";
 
 function App() {
   return (
     <>
-    <Forms>
-      </Forms>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Forms />} />
+          <Route path="/display" element={<Display />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
