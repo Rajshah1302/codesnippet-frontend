@@ -20,6 +20,7 @@ function Display() {
             <th>Username</th>
             <th>Code Language</th>
             <th>Stdin</th>
+            <th>Stdout</th>
             <th>Timestamp</th>
             <th>Source Code</th>
           </tr>
@@ -30,6 +31,7 @@ function Display() {
               <td>{entry.username}</td>
               <td>{entry.language}</td>
               <td>{entry.stdin}</td>
+              <td>{entry.output}</td> {/* Display stdout */}
               <td>{entry.createdAt}</td>
               <td>{entry.sourceCode.slice(0, 100)}</td>
             </tr>

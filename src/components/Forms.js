@@ -1,6 +1,6 @@
 import React from "react";
-import axios from 'axios'; // Import Axios
-import SimpleReactValidator from 'simple-react-validator';
+import axios from "axios"; // Import Axios
+import SimpleReactValidator from "simple-react-validator";
 
 class Forms extends React.Component {
   constructor(props) {
@@ -10,22 +10,27 @@ class Forms extends React.Component {
         username: "",
         language: "C++",
         stdin: "",
-        sourceCode: ""
-      }
+        sourceCode: "",
+      },
     };
     this.validator = new SimpleReactValidator();
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.formData)
+    console.log(this.state.formData);
     if (this.validator.allValid()) {
-        axios.post('http://localhost:5000/api/form-submissions', this.state.formData, {
+      axios
+        .post(
+          "http://localhost:5000/api/form-submissions",
+          this.state.formData,
+          {
             headers: {
-              'Content-Type': 'application/json'
-            }
-          })
-                  .then(response => {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
           console.log(response.data); // Log the response from the backend
           // Reset the form after successful submission if needed
           this.setState({
@@ -33,12 +38,12 @@ class Forms extends React.Component {
               username: "",
               language: "C++",
               stdin: "",
-              sourceCode: ""
-            }
+              sourceCode: "",
+            },
           });
         })
-        .catch(error => {
-          console.error('Error submitting form:', error);
+        .catch((error) => {
+          console.error("Error submitting form:", error);
           // Handle error, display error message, etc.
         });
     } else {
@@ -52,8 +57,8 @@ class Forms extends React.Component {
     this.setState((prevState) => ({
       formData: {
         ...prevState.formData,
-        [name]: value
-      }
+        [name]: value,
+      },
     }));
   };
   render() {
@@ -80,7 +85,11 @@ class Forms extends React.Component {
                     required
                   />
                   <span className="text-danger">
-                    {this.validator.message('username', formData.username, 'required')}
+                    {this.validator.message(
+                      "username",
+                      formData.username,
+                      "required"
+                    )}
                   </span>
                 </div>
                 <div className="mb-2">
@@ -100,7 +109,11 @@ class Forms extends React.Component {
                     <option value="Python">Python</option>
                   </select>
                   <span className="text-danger">
-                    {this.validator.message('language', formData.language, 'required')}
+                    {this.validator.message(
+                      "language",
+                      formData.language,
+                      "required"
+                    )}
                   </span>
                 </div>
                 <div className="mb-2">
@@ -116,7 +129,11 @@ class Forms extends React.Component {
                     required
                   ></textarea>
                   <span className="text-danger">
-                    {this.validator.message('stdin', formData.stdin, 'required')}
+                    {this.validator.message(
+                      "stdin",
+                      formData.stdin,
+                      "required"
+                    )}
                   </span>
                 </div>
                 <div className="mb-2">
@@ -128,11 +145,14 @@ class Forms extends React.Component {
                     value={formData.sourceCode}
                     onChange={this.handleInput}
                     className="form-control"
-                    placeholder="Enter Source Code"
                     required
                   ></textarea>
                   <span className="text-danger">
-                    {this.validator.message('sourceCode', formData.sourceCode, 'required')}
+                    {this.validator.message(
+                      "sourceCode",
+                      formData.sourceCode,
+                      "required"
+                    )}
                   </span>
                 </div>
                 <button
