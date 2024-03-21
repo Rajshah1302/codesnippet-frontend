@@ -5,8 +5,8 @@ function Display() {
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
-    // Fetch data from your backend or API endpoint using Axios
-    axios.get('http://localhost:5000/api/form-submissions')
+    // Fetch data from the backend API endpoint using Axios
+    axios.get(`${process.env.REACT_APP_API_URL}/api/form-submissions`)
       .then(response => setEntries(response.data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios"; // Import Axios
+import axios from "axios";
 import SimpleReactValidator from "simple-react-validator";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,7 +24,7 @@ class Forms extends React.Component {
     if (this.validator.allValid()) {
       axios
         .post(
-          "http://localhost:5000/api/form-submissions",
+          `${process.env.REACT_APP_API_URL}/api/form-submissions`,
           this.state.formData,
           {
             headers: {
@@ -33,8 +33,7 @@ class Forms extends React.Component {
           }
         )
         .then((response) => {
-          console.log(response.data); // Log the response from the backend
-          // Reset the form after successful submission if needed
+          console.log(response.data);
           this.setState({
             formData: {
               username: "",
@@ -43,13 +42,10 @@ class Forms extends React.Component {
               sourceCode: "",
             },
           });
-          // Show success toast
           toast.success("Form submitted successfully");
         })
         .catch((error) => {
           console.error("Error submitting form:", error);
-          // Handle error, display error message, etc.
-          // Show error toast
           toast.error("Error submitting form. Please try again later.");
         });
     } else {
