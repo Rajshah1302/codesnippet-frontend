@@ -24,7 +24,7 @@ class Forms extends React.Component {
     if (this.validator.allValid()) {
       axios
         .post(
-          `${process.env.REACT_APP_API_URL}/api/form-submissions`,
+          `${process.env.REACT_APP_API_URL}api/form-submissions`,
           this.state.formData,
           {
             headers: {
