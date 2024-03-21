@@ -67,10 +67,11 @@ class Forms extends React.Component {
     const { formData } = this.state;
     return (
       <>
+
         <ToastContainer />
-        <div className="d-flex justify-content-center align-items-center vh-100 bg-white mt-5">
+<div className="d-flex justify-content-center align-items-center vh-100" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1619252584172-a83a949b6efd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
           <div className="col-md-6 hover-div">
-            <div className=" p-3 rounded border border-2 shadow">
+            <div className=" p-3 rounded border border-2 shadow" style={{background:"white"}}>
               <h2 className="text-center m-0">Submit Code Snippet</h2>
               <p className="text-center ">Please enter your details</p>
               <form onSubmit={this.handleSubmit} noValidate className="my-5">
