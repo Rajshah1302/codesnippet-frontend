@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios"; // Import Axios
 import SimpleReactValidator from "simple-react-validator";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Forms extends React.Component {
   constructor(props) {
@@ -41,10 +43,14 @@ class Forms extends React.Component {
               sourceCode: "",
             },
           });
+          // Show success toast
+          toast.success("Form submitted successfully");
         })
         .catch((error) => {
           console.error("Error submitting form:", error);
           // Handle error, display error message, etc.
+          // Show error toast
+          toast.error("Error submitting form. Please try again later.");
         });
     } else {
       this.validator.showMessages();
@@ -65,7 +71,8 @@ class Forms extends React.Component {
     const { formData } = this.state;
     return (
       <>
-        <div className="d-flex justify-content-center align-items-center vh-100 bg-white">
+        <ToastContainer />
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-white mt-5">
           <div className="col-md-6 hover-div">
             <div className=" p-3 rounded border border-2 shadow">
               <h2 className="text-center m-0">Submit Code Snippet</h2>
